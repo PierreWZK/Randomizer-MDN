@@ -9,8 +9,16 @@
 <body style="background-color: rgb(18, 5, 52); overflow: hidden;">
     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100vw; height: 100vh; color: white; overflow: hidden; gap: 70px;">
         <span style="font-size: 70px; font-weight: bold;">RandomPage</span>
-        <button type="button" style="background-color: #ffff00; border-radius: 5px; cursor: pointer; width: 200px; height: 50px; font-size: 20px" onclick="getRandomLinkMDN()">Randomizer</button>
+        <button type="button" style="background-color: #ffff00; border-radius: 5px; cursor: pointer; width: 250px; height: 80px; font-size: 25px" onclick="getRandomLinkMDN()">Randomizer</button>
         <a id="linkMDN" href="#" style="color: white" target="_blank">Nothing</a>
+        <div style="display: flex; gap: 15px;">
+            <button type="button" id="HTMLTheme" style="width: 150px; height: 50px; border-radius: 5px;" onclick="choiceTheme(1)">HTML</button>
+            <button type="button" id="CSSTheme" style="width: 150px; height: 50px; border-radius: 5px;" onclick="choiceTheme(2)">CSS</button>
+            <button type="button" id="JSTheme" style="width: 150px; height: 50px; border-radius: 5px;" onclick="choiceTheme(3)">JS</button>
+        </div>
+        <div style="display: flex; gap: 15px; margin-top: -50px;">
+            <button type="button" id="AllTheme" style="width: 100px; height: 50px;" onclick="choiceTheme(0)">All theme</button>
+        </div>
     </div>
 </body>
 </html>

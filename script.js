@@ -6,6 +6,8 @@ var randomBaseUrlLog = "";
 var randomCategoryLog = "";
 var randomLinkLog = "";
 
+var choiceSelected = 0;
+
 //! ========================
 //! INITIALIZATION VARIABLES
 //! ========================
@@ -20,7 +22,15 @@ var randomLinkLog = "";
 //* fonctionnement : sélectionne une URL de base aléatoire, puis une catégorie aléatoire en fonction de l'URL de base choisie, encode l'URL de la catégorie sélectionnée et la concatène à l'URL de base pour former le lien final
 //? creat by : Pierr.
 function getRandomLinkMDN() {
-  getRandomLink();
+  if (choiceSelected) {
+    // stringChoiceSelected
+
+    randomBaseUrlLog = "https://developer.mozilla.org/fr/docs/Web";
+    randomCategoryLog = stringChoiceSelected;
+    randomLinkLog = randomBaseUrlLog + "/" + encodeURIComponent(randomCategoryLog.replace(/\s/g, "_"));;
+  } else {
+    getRandomLink();
+  }
 
   var urlLink = randomBaseUrlLog.split("/").pop();
 
@@ -856,11 +866,10 @@ function getRandomLinkByTheme(category, urlLink) {
           "Trailing_commas",
           "Deprecated_features",
         ];
-
         category = "JavaScript/Reference";
         break;
-      case "HTTP":
-        break;
+      // case "HTTP":
+        // break;
     }
   } else if (urlLink == "Add-ons") {
     switch (category) {
@@ -909,6 +918,42 @@ function getRandomLinkByTheme(category, urlLink) {
   }
 
   return randomLink;
+}
+
+function choiceTheme(numberTheme) {
+  // 1 = HTML
+  // 2 = CSS
+  // 3 = Javascript
+
+  switch (numberTheme) {
+    case 0: // Color in white
+      choiceSelected = 0;
+      document.getElementById("HTMLTheme").style.backgroundColor = "#FFFFFF";
+      document.getElementById('CSSTheme').style.backgroundColor = '#FFFFFF';
+      document.getElementById('JSTheme').style.backgroundColor = '#FFFFFF';
+      break;
+    case 1:
+      choiceSelected = 1;
+      stringChoiceSelected = "HTML";
+      document.getElementById("HTMLTheme").style.backgroundColor = "#0FFF00"; // Color in light green
+      document.getElementById('CSSTheme').style.backgroundColor = '#FFFFFF'; // Color in white
+      document.getElementById('JSTheme').style.backgroundColor = '#FFFFFF'; // Color in white
+      break;
+    case 2:
+      choiceSelected = 1;
+      stringChoiceSelected = "CSS";
+      document.getElementById("HTMLTheme").style.backgroundColor = "#FFFFFF"; // Color in white
+      document.getElementById('CSSTheme').style.backgroundColor = '#0FFF00'; // Color in light green
+      document.getElementById('JSTheme').style.backgroundColor = '#FFFFFF'; // Color in white
+      break;
+    case 3:
+      choiceSelected = 1;
+      stringChoiceSelected = "Javascript";
+      document.getElementById("HTMLTheme").style.backgroundColor = "#FFFFFF"; // Color in white
+      document.getElementById('CSSTheme').style.backgroundColor = '#FFFFFF'; // Color in white
+      document.getElementById('JSTheme').style.backgroundColor = '#0FFF00'; // Color in light green
+      break;
+  } 
 }
 
 //! ========================
