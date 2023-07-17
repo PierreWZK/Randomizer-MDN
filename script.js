@@ -1,3 +1,5 @@
+// import { myJsonString } from './API/JSON_API.js';
+
 //! ========================
 //! INITIALIZATION VARIABLES
 //! ========================
@@ -6,10 +8,18 @@ var randomBaseUrlLog = "";
 var randomCategoryLog = "";
 var randomLinkLog = "";
 
+var json_object = "";
+
 var choiceSelected = 0;
+
+var languageSelected = "FR";
 
 //! ========================
 //! INITIALIZATION VARIABLES
+//! ========================
+
+//! ========================
+//! DOCUMENT READY
 //! ========================
 
 //! ========================
@@ -23,11 +33,12 @@ var choiceSelected = 0;
 //? creat by : Pierr.
 function getRandomLinkMDN() {
   if (choiceSelected) {
-    // stringChoiceSelected
-
     randomBaseUrlLog = "https://developer.mozilla.org/fr/docs/Web";
     randomCategoryLog = stringChoiceSelected;
-    randomLinkLog = randomBaseUrlLog + "/" + encodeURIComponent(randomCategoryLog.replace(/\s/g, "_"));;
+    randomLinkLog =
+      randomBaseUrlLog +
+      "/" +
+      encodeURIComponent(randomCategoryLog.replace(/\s/g, "_"));
   } else {
     getRandomLink();
   }
@@ -869,7 +880,7 @@ function getRandomLinkByTheme(category, urlLink) {
         category = "JavaScript/Reference";
         break;
       // case "HTTP":
-        // break;
+      // break;
     }
   } else if (urlLink == "Add-ons") {
     switch (category) {
@@ -929,33 +940,120 @@ function choiceTheme(numberTheme) {
     case 0: // Color in white
       choiceSelected = 0;
       document.getElementById("HTMLTheme").style.backgroundColor = "#FFFFFF";
-      document.getElementById('CSSTheme').style.backgroundColor = '#FFFFFF';
-      document.getElementById('JSTheme').style.backgroundColor = '#FFFFFF';
+      document.getElementById("CSSTheme").style.backgroundColor = "#FFFFFF";
+      document.getElementById("JSTheme").style.backgroundColor = "#FFFFFF";
       break;
     case 1:
       choiceSelected = 1;
       stringChoiceSelected = "HTML";
       document.getElementById("HTMLTheme").style.backgroundColor = "#0FFF00"; // Color in light green
-      document.getElementById('CSSTheme').style.backgroundColor = '#FFFFFF'; // Color in white
-      document.getElementById('JSTheme').style.backgroundColor = '#FFFFFF'; // Color in white
+      document.getElementById("CSSTheme").style.backgroundColor = "#FFFFFF"; // Color in white
+      document.getElementById("JSTheme").style.backgroundColor = "#FFFFFF"; // Color in white
       break;
     case 2:
       choiceSelected = 1;
       stringChoiceSelected = "CSS";
       document.getElementById("HTMLTheme").style.backgroundColor = "#FFFFFF"; // Color in white
-      document.getElementById('CSSTheme').style.backgroundColor = '#0FFF00'; // Color in light green
-      document.getElementById('JSTheme').style.backgroundColor = '#FFFFFF'; // Color in white
+      document.getElementById("CSSTheme").style.backgroundColor = "#0FFF00"; // Color in light green
+      document.getElementById("JSTheme").style.backgroundColor = "#FFFFFF"; // Color in white
       break;
     case 3:
       choiceSelected = 1;
       stringChoiceSelected = "Javascript";
       document.getElementById("HTMLTheme").style.backgroundColor = "#FFFFFF"; // Color in white
-      document.getElementById('CSSTheme').style.backgroundColor = '#FFFFFF'; // Color in white
-      document.getElementById('JSTheme').style.backgroundColor = '#0FFF00'; // Color in light green
+      document.getElementById("CSSTheme").style.backgroundColor = "#FFFFFF"; // Color in white
+      document.getElementById("JSTheme").style.backgroundColor = "#0FFF00"; // Color in light green
       break;
-  } 
+  }
+}
+
+function chooseLanguage() {
+  var switchButton = document.querySelector("#button div.switchButton");
+  var slider = switchButton.querySelector(".slider");
+
+  if (languageSelected == "FR") {
+    // Transform to EN
+    // switchButton.style.justifyContent = "flex-end";
+    slider.style.transform = "translateX(170%)"; // Déplacer le slider vers la droite
+    document.querySelector('#button div.switchButton span').innerHTML = "EN";
+  } else {
+    // Transform to FR
+    // switchButton.style.justifyContent = "flex-start";
+    slider.style.transform = "translateX(0)"; // Déplacer le slider vers la gauche (position initiale)
+    document.querySelector('#button div.switchButton span').innerHTML = "FR";
+  }
+
+  languageSelected = languageSelected == "FR" ? "EN" : "FR";
 }
 
 //! ========================
 //! FUNCTIONS
 //! ========================
+
+//! ========================
+//! DARK AND LIGHT MODE
+//! ========================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const sun =
+    "https://www.uplooder.net/img/image/55/7aa9993fc291bc170abea048589896cf/sun.svg";
+  const moon =
+    "https://www.uplooder.net/img/image/2/addf703a24a12d030968858e0879b11e/moon.svg";
+
+  var theme = "dark";
+  const root = document.querySelector(":root");
+  const container = document.querySelectorAll(".theme-container")[0];
+  const themeIcon = document.getElementById("theme-icon");
+  container.addEventListener("click", setTheme);
+  function setTheme() {
+    switch (theme) {
+      case "dark":
+        setLight();
+        theme = "light";
+        break;
+      case "light":
+        setDark();
+        theme = "dark";
+        break;
+    }
+  }
+
+  function setLight() {
+    root.style.setProperty("--change-darkAndLight", "#ffffff");
+    root.style.setProperty("--change-darkAndLightSecond", "#120534");
+    container.classList.remove("shadow-dark");
+    setTimeout(() => {
+      container.classList.add("shadow-light");
+      themeIcon.classList.remove("change");
+    }, 300);
+    themeIcon.classList.add("change");
+    themeIcon.src = sun;
+  }
+
+  function setDark() {
+    root.style.setProperty("--change-darkAndLight", "#120534");
+    root.style.setProperty("--change-darkAndLightSecond", "#ffffff");
+    container.classList.remove("shadow-light");
+    setTimeout(() => {
+      container.classList.add("shadow-dark");
+      themeIcon.classList.remove("change");
+    }, 300);
+    themeIcon.classList.add("change");
+    themeIcon.src = moon;
+  }
+});
+
+//! ========================
+//! DARK AND LIGHT MODE
+//! ========================
+
+//! ========================
+//! JSON
+//! ========================
+
+//? function getJSON()
+//! paramètres : **
+//! retour : un objet JSON
+//* fonctionnement : récupère un objet JSON
+//? creat by : Pierr.
+function getJSON() {}
