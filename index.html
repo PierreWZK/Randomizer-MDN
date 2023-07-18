@@ -135,16 +135,20 @@
         <div id="filters">
             <div class="bouton" style="width: 20vw;">
                 <label for="theme">Choisis le thème</label>
-                <select name="theme" id="theme" onchange="choiceTheme(this.value)">
+                <div class="boutonBG">
+                  <select name="theme" id="theme" onchange="choiceTheme(this.value)">
                     <option value="0">Tous les thèmes</option>
                     <option value="1">HTML</option>
                     <option value="2">CSS</option>
                     <option value="3">JS</option>
-                </select>
+                  </select>
+                </div>
             </div>
             <div class="bouton" style="width: 20vw;">
-                <label for="search">Cherche une page</label>
-                <input type="text" name="search" id="search">
+                <label for="search" onclick="document.getElementById('search').click()">Cherche une page</label>
+                <div class="boutonBG" onclick="document.getElementById('search').click()">
+                  <input type="text" name="search" id="search">
+                </div>
             </div>
         </div>
 
